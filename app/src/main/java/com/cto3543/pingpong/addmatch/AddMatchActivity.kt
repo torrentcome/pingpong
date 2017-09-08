@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.cto3543.pingpong.BaseActivity
 import com.cto3543.pingpong.R
 import com.cto3543.pingpong.adduser.User
@@ -89,17 +90,16 @@ class AddMatchActivity : BaseActivity() {
             databaseRefMatch.push().setValue(Match(mUser1?.key, mUser2?.key, edit1.toInt(), edit2.toInt(), System.currentTimeMillis()))
 
             if (edit1.toInt() == edit2.toInt()) {
-                Log.i("", "Firebase no increment")
+                Toast.makeText(this@AddMatchActivity, "Equality", Toast.LENGTH_LONG).show()
             } else if (edit1.toInt() > edit2.toInt()) {
+                Toast.makeText(this@AddMatchActivity, mUser1?.email + " WINS !", Toast.LENGTH_LONG).show()
                 setScore(mUser1)
             } else {
+                Toast.makeText(this@AddMatchActivity, mUser2?.email + " WINS !", Toast.LENGTH_LONG).show()
                 setScore(mUser2)
             }
 
-            // clean
-            mEditText1?.setText("")
-            mEditText2?.setText("")
-            finish()
+            onBackPressed()
         }
     }
 

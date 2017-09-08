@@ -23,22 +23,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"></View>
 
-    <View
-        android:id="@+id/spacer1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/colorPrimaryLight"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"></View>
-
-    <View
-        android:id="@+id/spacer2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/colorPrimary"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="256dp"></View>
-
     <EditText
         android:id="@+id/edit1"
         android:layout_width="wrap_content"
@@ -120,7 +104,19 @@
         android:clickable="true"
         app:layout_anchorGravity="bottom|end"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/spacer2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/plus"
+        android:textColor="@color/white"
+        android:textSize="33sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -151,4 +147,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/name2"
         app:srcCompat="@drawable/ic_ping_pong" />
+
 </android.support.constraint.ConstraintLayout>
