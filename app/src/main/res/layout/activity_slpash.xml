@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  tools:context="com.cto3543.pingpong.SlpashActivity"
-  android:layout_height="match_parent"
-  android:layout_width="match_parent"
-  tools:layout_editor_absoluteY="81dp"
-  tools:layout_editor_absoluteX="0dp">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_splash"
+    tools:context="com.cto3543.pingpong.SlpashActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
-  <com.airbnb.lottie.LottieAnimationView
-    android:layout_height="118dp"
-    android:layout_width="86dp"
-    app:lottie_fileName="Mobilo/P.json"
-    android:id="@+id/P"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintRight_toLeftOf="@+id/I"
-    app:layout_constraintBottom_toBottomOf="parent"/>
-
-
-  <com.airbnb.lottie.LottieAnimationView
-    android:layout_height="117dp"
-    android:layout_width="86dp"
-    app:lottie_fileName="Mobilo/I.json"
-    android:id="@+id/I"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintRight_toLeftOf="@+id/N"
-    app:layout_constraintLeft_toRightOf="@+id/P"
-    app:layout_constraintBottom_toBottomOf="parent"/>
-
-  <com.airbnb.lottie.LottieAnimationView
-    android:layout_height="117dp"
-    android:layout_width="86dp"
-    app:lottie_fileName="Mobilo/O.json"
-    android:id="@+id/O"
-    android:visibility="gone"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintRight_toLeftOf="@+id/N"
-    app:layout_constraintLeft_toRightOf="@+id/P"
-    app:layout_constraintBottom_toBottomOf="parent"/>
-
-  <com.airbnb.lottie.LottieAnimationView
-    android:layout_height="118dp"
-    android:layout_width="86dp"
-    app:lottie_fileName="Mobilo/N.json"
-    android:id="@+id/N"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintRight_toLeftOf="@+id/G"
-    app:layout_constraintLeft_toRightOf="@+id/I"
-    app:layout_constraintBottom_toBottomOf="parent"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/P"
+        android:layout_width="86dp"
+        android:layout_height="118dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/I"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_fileName="Mobilo/P.json" />
 
 
-  <com.airbnb.lottie.LottieAnimationView
-    android:layout_height="118dp"
-    android:layout_width="86dp"
-    app:lottie_fileName="Mobilo/G.json"
-    android:id="@+id/G"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintLeft_toRightOf="@+id/N"
-    app:layout_constraintBottom_toBottomOf="parent"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/I"
+        android:layout_width="86dp"
+        android:layout_height="117dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/P"
+        app:layout_constraintRight_toLeftOf="@+id/N"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_fileName="Mobilo/I.json" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/O"
+        android:layout_width="86dp"
+        android:layout_height="117dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/P"
+        app:layout_constraintRight_toLeftOf="@+id/N"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_fileName="Mobilo/O.json" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/N"
+        android:layout_width="86dp"
+        android:layout_height="118dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/I"
+        app:layout_constraintRight_toLeftOf="@+id/G"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_fileName="Mobilo/N.json" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/G"
+        android:layout_width="86dp"
+        android:layout_height="118dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/N"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_fileName="Mobilo/G.json" />
 
 
 </android.support.constraint.ConstraintLayout>

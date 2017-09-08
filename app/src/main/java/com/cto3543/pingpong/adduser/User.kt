@@ -6,7 +6,7 @@ import android.os.Parcelable
 /**
  * Created by cto3543 on 18/04/2017.
  */
-data class User(val sexe: Boolean = true, val email: String = "", val surname: String? = null, val score: Int? = null, val party: Int? = null, var key: String? = null) : Parcelable {
+data class User(val sexe: Boolean = true, val email: String = "", val surname: String? = null, val score: Int = 0, val party: Int? = null, var key: String? = null) : Parcelable {
     companion object {
         @JvmField val CREATOR: Parcelable.Creator<User> = object : Parcelable.Creator<User> {
             override fun createFromParcel(source: Parcel): User = User(source)
@@ -18,7 +18,7 @@ data class User(val sexe: Boolean = true, val email: String = "", val surname: S
             1.equals(source.readInt()),
             source.readString(),
             source.readString(),
-            source.readValue(Int::class.java.classLoader) as Int?,
+            source.readValue(Int::class.java.classLoader) as Int,
             source.readValue(Int::class.java.classLoader) as Int?,
             source.readString()
     )

@@ -35,9 +35,12 @@ class UserListAdapter(val context: Context, val list: ArrayList<User>, val handl
 
         var name: TextView? = null
         var email: TextView? = null
+        var score: TextView? = null
         var icon: FloatingActionButton? = null
 
         fun bindForecast(context: Context, user: User?) {
+
+            score = view.findViewById(R.id.score) as TextView?
             email = view.findViewById(R.id.email) as TextView?
             name = view.findViewById(R.id.name) as TextView?
             icon = view.findViewById(R.id.icon) as FloatingActionButton?
@@ -45,6 +48,7 @@ class UserListAdapter(val context: Context, val list: ArrayList<User>, val handl
             with(user) {
                 email?.text = user?.email
                 name?.text = user?.surname
+                score?.text = user?.score.toString()
                 val drawable: Drawable
                 if (user?.sexe as Boolean)
                     drawable = context.resources.getDrawable(R.drawable.avatar1)
@@ -61,5 +65,9 @@ class UserListAdapter(val context: Context, val list: ArrayList<User>, val handl
     fun addUser(user: User) {
         list.add(user)
         notifyDataSetChanged()
+    }
+
+    fun clean() {
+        list.clear()
     }
 }

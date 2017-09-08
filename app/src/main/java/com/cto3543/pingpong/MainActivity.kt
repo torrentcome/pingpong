@@ -12,20 +12,18 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.cto3543.pingpong.addmatch.AddMatchActivity
-import com.cto3543.pingpong.addmatch.Match
 import com.cto3543.pingpong.adduser.AddUserActivity
 import com.cto3543.pingpong.adduser.User
 import com.cto3543.pingpong.adduser.UserListAdapter
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.pchmn.materialchips.ChipView
+
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, UserListAdapter.UserSelectionAdapter {
     private var mRecycler: RecyclerView? = null
@@ -106,55 +104,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     fun setData() {
-        databaseRefUser.addChildEventListener(object : ChildEventListener {
-            override fun onCancelled(p0: DatabaseError?) {
-                Log.e("AddUserActivity", p0.toString())
-            }
-
-            override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
-            }
-
-            override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
-            }
-
-            override fun onChildRemoved(p0: DataSnapshot?) {
-            }
-
-            override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
-                val user: User? = p0?.getValue(User::class.java)
-                if (user != null) {
-                    user.key = p0.key
-                    (mRecycler?.adapter as UserListAdapter).addUser(user)
-                }
-            }
-        })
-
-        databaseRefMatch.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError?) {
-            }
-
-            override fun onDataChange(p0: DataSnapshot?) {
-                println(p0)
-                val listMatch = p0?.children
-                listMatch?.forEach {
-                    val match: Match? = it.getValue(Match::class.java)
-                    if (match?.score1 as Int > match.score2) {
-                        val user = databaseRefUser.orderByChild(match.mRef1).addListenerForSingleValueEvent(object : ValueEventListener{
-                            override fun onCancelled(p0: DatabaseError?) {
-                            }
-
-                            override fun onDataChange(p0: DataSnapshot?) {
-                            }
-
-                        })
-
-                    } else {
-                        val user = databaseRefUser.orderByChild("mRef2").equalTo(match.mRef2)
-                    }
-                }
-            }
-        })
-
+        callUser()
         vs?.setOnClickListener {
             if (mUser1?.key.equals(mUser2?.key)) {
                 Snackbar.make(mRecycler as View, "Wrong selection", Snackbar.LENGTH_LONG).show()
@@ -185,22 +135,47 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
-
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_reload) {
+            callUser()
             return true
         }
-
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        val id = item.itemId
+    override fun onResume() {
+        super.onResume()
+        callUser()
+    }
 
+    fun callUser() {
+        (mRecycler?.adapter as UserListAdapter).clean()
+        databaseRefUser.addChildEventListener(object : ChildEventListener {
+            override fun onCancelled(p0: DatabaseError?) {
+            }
+
+            override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
+            }
+
+            override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
+            }
+
+            override fun onChildRemoved(p0: DataSnapshot?) {
+            }
+
+            override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
+                println("call user :" + p0)
+                val user: User? = p0?.getValue(User::class.java)
+                if (user != null) {
+                    user.key = p0.key
+                    (mRecycler?.adapter as UserListAdapter).addUser(user)
+                }
+            }
+        })
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
         when (id) {
             R.id.nav_add_user -> startActivity(Intent(this, AddUserActivity::class.java))
             else -> Unit

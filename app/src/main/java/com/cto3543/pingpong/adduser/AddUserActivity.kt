@@ -5,10 +5,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.cto3543.pingpong.BaseActivity
@@ -30,11 +31,14 @@ class AddUserActivity : BaseActivity() {
     private var mIconGuy: ImageView? = null
     private var mIconGirl: ImageView? = null
     private var mRecycler: RecyclerView? = null
-    private var mEmailAddUserButton: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_user)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         // Set up the login form.
         mEmailView = findViewById(R.id.email) as TextView
         mSurnameView = findViewById(R.id.surname) as TextView
@@ -44,10 +48,22 @@ class AddUserActivity : BaseActivity() {
         mProgressView = findViewById(R.id.login_progress)
 
         mRecycler = findViewById(R.id.recycler_view) as RecyclerView
-        mEmailAddUserButton = findViewById(R.id.email_add_user_button) as Button
 
         setUI()
         setData()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_add_user, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> onBackPressed()
+            R.id.add_user -> attemptAddUser()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     var isAGuy: Boolean = true
@@ -66,9 +82,6 @@ class AddUserActivity : BaseActivity() {
             mIconGuy?.visibility = VISIBLE
             mIconGirl?.visibility = GONE
         }
-
-        // login
-        mEmailAddUserButton?.setOnClickListener { attemptLogin() }
 
         // recyclerview
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -106,7 +119,7 @@ class AddUserActivity : BaseActivity() {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private fun attemptLogin() {
+    private fun attemptAddUser() {
         // Reset errors.
         mEmailView!!.error = null
         mSurnameView!!.error = null
