@@ -9,6 +9,8 @@
     <string name="action_reload">reload</string>
     <string name="action_valid">valid</string>
     <string name="title_activity_add_user">Add user</string>
+    <string name="title_activity_add_match">Add match</string>
+    <string name="vs">VS</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -20,8 +22,6 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
-    <string name="vs">VS</string>
-    <string name="title_activity_add_match">AddMatchActivity</string>
     <string name="large_text">
     "Material is the metaphor.\n\n"
 

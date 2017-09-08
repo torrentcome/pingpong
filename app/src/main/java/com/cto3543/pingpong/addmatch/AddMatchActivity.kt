@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.Toolbar
 import android.text.TextUtils
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
@@ -32,7 +33,7 @@ class AddMatchActivity : BaseActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Add Match"
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val bundle = intent.getBundleExtra("bundle")
         mUser1 = bundle.getParcelable("mUser1")
@@ -46,19 +47,24 @@ class AddMatchActivity : BaseActivity() {
 
         val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
-            attemptMatch()
+            attemptAddMatch()
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_add_match, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> onBackPressed()
+            R.id.add_match -> attemptAddMatch()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun attemptMatch() {
+    private fun attemptAddMatch() {
         mEditText1!!.error = null
         mEditText2!!.error = null
 
