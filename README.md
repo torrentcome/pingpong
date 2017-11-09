@@ -1,4 +1,6 @@
 # PingPong
+![](/app/src/main/res/mipmap-hdpi/ic_launcher.png)
+
 PingPong is a cool and relax Android app for test and try kotlin language.
 
 ## Features
