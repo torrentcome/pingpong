@@ -1,4 +1,4 @@
-package com.cto3543.pingpong.adduser
+package com.cto3543.pingpong.user.adduser
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.cto3543.pingpong.BaseActivity
 import com.cto3543.pingpong.R
+import com.cto3543.pingpong.user.User
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

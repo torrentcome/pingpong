@@ -1,4 +1,4 @@
-package com.cto3543.pingpong.addmatch
+package com.cto3543.pingpong.match.addmatch
 
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -13,7 +13,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.cto3543.pingpong.BaseActivity
 import com.cto3543.pingpong.R
-import com.cto3543.pingpong.adduser.User
+import com.cto3543.pingpong.match.Match
+import com.cto3543.pingpong.user.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.MutableData
@@ -40,7 +41,7 @@ class AddMatchActivity : BaseActivity() {
         mUser1 = bundle.getParcelable("mUser1")
         mUser2 = bundle.getParcelable("mUser2")
 
-        (findViewById(R.id.name1) as TextView).text = mUser1?.email
+        (findViewById(R.id.name_1) as TextView).text = mUser1?.email
         (findViewById(R.id.name2) as TextView).text = mUser2?.email
 
         mEditText1 = findViewById(R.id.edit1) as EditText
@@ -87,7 +88,7 @@ class AddMatchActivity : BaseActivity() {
         if (cancel) {
             focusView!!.requestFocus()
         } else {
-            databaseRefMatch.push().setValue(Match(mUser1?.key, mUser2?.key, edit1.toInt(), edit2.toInt(), System.currentTimeMillis()))
+            databaseRefMatch.push().setValue(Match(mUser1?.key!!, mUser2?.key!!, edit1.toInt(), edit2.toInt(), System.currentTimeMillis()))
 
             if (edit1.toInt() == edit2.toInt()) {
                 Toast.makeText(this@AddMatchActivity, "Equality", Toast.LENGTH_LONG).show()
@@ -109,7 +110,9 @@ class AddMatchActivity : BaseActivity() {
                 if (p0 != null) {
                     Log.i("Firebase", "Firebase increment failed p0.code =" + p0.code)
                     Log.i("Firebase", "Firebase increment failed details=" + p0.details)
-                    Log.i("Firebase", "Firebase increment failed message=" + p0.message)
+                    Log.i("Firebase",
+
+                            "Firebase increment failed message=" + p0.message)
                 } else {
                     Log.i("Firebase", "Firebase increment sucess")
                 }

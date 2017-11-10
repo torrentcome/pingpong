@@ -15,10 +15,11 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.cto3543.pingpong.addmatch.AddMatchActivity
-import com.cto3543.pingpong.adduser.AddUserActivity
-import com.cto3543.pingpong.adduser.User
-import com.cto3543.pingpong.adduser.UserListAdapter
+import com.cto3543.pingpong.match.addmatch.AddMatchActivity
+import com.cto3543.pingpong.match.seematch.SeeMatchActivity
+import com.cto3543.pingpong.user.User
+import com.cto3543.pingpong.user.adduser.AddUserActivity
+import com.cto3543.pingpong.user.adduser.UserListAdapter
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -57,7 +58,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         vs = findViewById(R.id.vs) as FloatingActionButton
 
         val layoutManager = GridLayoutManager(this, 1)
-        mRecycler?.layoutManager = layoutManager as RecyclerView.LayoutManager?
+        mRecycler?.layoutManager = layoutManager
         mRecycler?.adapter = UserListAdapter(this, ArrayList<User>(), object : UserListAdapter.UserSelectionAdapter {
             override fun onClick(user: User?) {
                 // initialize
@@ -78,7 +79,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             }
         })
-        setData()
+        vs?.setOnClickListener {
+            startMatch()
+        }
+        callUser()
     }
 
     fun bindForecast(view: ChipView?, user: User?) {
@@ -103,19 +107,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
-    fun setData() {
-        callUser()
-        vs?.setOnClickListener {
-            if (mUser1?.key.equals(mUser2?.key)) {
-                Snackbar.make(mRecycler as View, "Wrong selection", Snackbar.LENGTH_LONG).show()
-            } else if (mUser1 != null && mUser2 != null) {
-                val bundle: Bundle = Bundle()
-                bundle.putParcelable("mUser1", mUser1)
-                bundle.putParcelable("mUser2", mUser2)
-                val intent = Intent(this, AddMatchActivity::class.java)
-                intent.putExtra("bundle", bundle)
-                startActivity(intent)
-            }
+    private fun startMatch() {
+        if (mUser1?.key.equals(mUser2?.key)) {
+            Snackbar.make(mRecycler as View, "Wrong selection", Snackbar.LENGTH_LONG).show()
+        } else if (mUser1 != null && mUser2 != null) {
+            val bundle: Bundle = Bundle()
+            bundle.putParcelable("mUser1", mUser1)
+            bundle.putParcelable("mUser2", mUser2)
+            val intent = Intent(this, AddMatchActivity::class.java)
+            intent.putExtra("bundle", bundle)
+            startActivity(intent)
         }
     }
 
@@ -129,15 +130,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        if (id == R.id.action_reload) {
-            callUser()
+        if (id == R.id.action_start) {
+            startMatch()
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -178,6 +178,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val id = item.itemId
         when (id) {
             R.id.nav_add_user -> startActivity(Intent(this, AddUserActivity::class.java))
+            R.id.nav_see_match -> startActivity(Intent(this, SeeMatchActivity::class.java))
             else -> Unit
         }
 

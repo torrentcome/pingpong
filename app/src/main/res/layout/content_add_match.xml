@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.cto3543.pingpong.addmatch.AddMatchActivity"
+    tools:context="com.cto3543.pingpong.match.addmatch.AddMatchActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp"
     tools:showIn="@layout/activity_add_match">
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fab" />
 
     <TextView
-        android:id="@+id/name1"
+        android:id="@+id/name_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -129,9 +129,9 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/name1"
+        app:layout_constraintBottom_toBottomOf="@+id/name_1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/name1"
+        app:layout_constraintRight_toLeftOf="@+id/name_1"
         app:srcCompat="@drawable/ic_ping_pong" />
 
     <ImageView

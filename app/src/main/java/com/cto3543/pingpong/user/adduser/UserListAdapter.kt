@@ -1,4 +1,4 @@
-package com.cto3543.pingpong.adduser
+package com.cto3543.pingpong.user.adduser
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -9,10 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.cto3543.pingpong.R
+import com.cto3543.pingpong.user.User
 
-/**
- * Created by cto3543 on 18/04/2017.
- */
 class UserListAdapter(val context: Context, val list: ArrayList<User>, val handler: UserSelectionAdapter?) : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
 
     interface UserSelectionAdapter {
@@ -20,7 +18,7 @@ class UserListAdapter(val context: Context, val list: ArrayList<User>, val handl
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.user_list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_user, parent, false)
         return ViewHolder(view)
     }
 
