@@ -11,7 +11,7 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
+import android.support.v7.widget.Toolbar;
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -28,8 +28,8 @@ import com.pchmn.materialchips.ChipView
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, UserListAdapter.UserSelectionAdapter {
     private var mRecycler: RecyclerView? = null
-    var chips_input1: ChipView? = null
-    var chips_input2: ChipView? = null
+    var chipsInput1: ChipView? = null
+    var chipsInput2: ChipView? = null
     var vs: FloatingActionButton? = null
 
     private var mUser1: User? = null
@@ -38,24 +38,24 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
+        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         val toggle = ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer.setDrawerListener(toggle)
+        drawer.addDrawerListener(toggle)
         toggle.syncState()
 
-        val navigationView = findViewById(R.id.nav_view) as NavigationView
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
-        mRecycler = findViewById(R.id.recycler_view) as RecyclerView
-        chips_input1 = findViewById(R.id.chips_input1) as ChipView
-        chips_input2 = findViewById(R.id.chips_input2) as ChipView
-        vs = findViewById(R.id.vs) as FloatingActionButton
+        mRecycler = findViewById<RecyclerView>(R.id.recycler_view)
+        chipsInput1 = findViewById<ChipView>(R.id.chips_input1)
+        chipsInput2 = findViewById<ChipView>(R.id.chips_input2)
+        vs = findViewById<FloatingActionButton>(R.id.vs)
 
         val layoutManager = GridLayoutManager(this, 1)
         mRecycler?.layoutManager = layoutManager
@@ -63,8 +63,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             override fun onClick(user: User?) {
                 // initialize
                 if (mUser1 != null && mUser2 != null) {
-                    bindForecast(chips_input1, null)
-                    bindForecast(chips_input2, null)
+                    bindForecast(chipsInput1, null)
+                    bindForecast(chipsInput2, null)
                     mUser1 = null
                     mUser2 = null
                 }
@@ -72,10 +72,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 // logic
                 if (mUser1 == null) {
                     mUser1 = user
-                    bindForecast(chips_input1, mUser1)
+                    bindForecast(chipsInput1, mUser1)
                 } else {
                     mUser2 = user
-                    bindForecast(chips_input2, mUser2)
+                    bindForecast(chipsInput2, mUser2)
                 }
             }
         })
@@ -121,7 +121,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onBackPressed() {
-        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
+        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
@@ -182,7 +182,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             else -> Unit
         }
 
-        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
+        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         drawer.closeDrawer(GravityCompat.START)
         return true
     }

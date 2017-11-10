@@ -5,7 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View.*
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import com.airbnb.lottie.LottieAnimationView
 
 class SlpashActivity : AppCompatActivity() {
@@ -17,11 +18,11 @@ class SlpashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_slpash)
         context = this
 
-        val P: LottieAnimationView = findViewById(R.id.P) as LottieAnimationView
-        val I: LottieAnimationView = findViewById(R.id.I) as LottieAnimationView
-        val O: LottieAnimationView = findViewById(R.id.O) as LottieAnimationView
-        val N: LottieAnimationView = findViewById(R.id.N) as LottieAnimationView
-        val G: LottieAnimationView = findViewById(R.id.G) as LottieAnimationView
+        val P: LottieAnimationView = findViewById<LottieAnimationView>(R.id.P)
+        val I: LottieAnimationView = findViewById<LottieAnimationView>(R.id.I)
+        val O: LottieAnimationView = findViewById<LottieAnimationView>(R.id.O)
+        val N: LottieAnimationView = findViewById<LottieAnimationView>(R.id.N)
+        val G: LottieAnimationView = findViewById<LottieAnimationView>(R.id.G)
 
         P.playAnimation()
         I.playAnimation()

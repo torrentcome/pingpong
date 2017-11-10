@@ -41,14 +41,14 @@ class AddUserActivity : BaseActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         // Set up the login form.
-        mEmailView = findViewById(R.id.email) as TextView
-        mSurnameView = findViewById(R.id.surname) as TextView
-        mIconGuy = findViewById(R.id.icon_guy) as ImageView
-        mIconGirl = findViewById(R.id.icon_girl) as ImageView
+        mEmailView = findViewById<TextView>(R.id.email)
+        mSurnameView = findViewById<TextView>(R.id.surname)
+        mIconGuy = findViewById<ImageView>(R.id.icon_guy)
+        mIconGirl = findViewById<ImageView>(R.id.icon_girl)
         mLoginFormView = findViewById(R.id.login_form)
         mProgressView = findViewById(R.id.login_progress)
 
-        mRecycler = findViewById(R.id.recycler_view) as RecyclerView
+        mRecycler = findViewById<RecyclerView>(R.id.recycler_view)
 
         setUI()
         setData()

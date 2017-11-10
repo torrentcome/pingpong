@@ -38,10 +38,10 @@ class UserListAdapter(val context: Context, val list: ArrayList<User>, val handl
 
         fun bindForecast(context: Context, user: User?) {
 
-            score = view.findViewById(R.id.score) as TextView?
-            email = view.findViewById(R.id.email) as TextView?
-            name = view.findViewById(R.id.name) as TextView?
-            icon = view.findViewById(R.id.icon) as FloatingActionButton?
+            score = view.findViewById<TextView>(R.id.score)
+            email = view.findViewById<TextView>(R.id.email)
+            name = view.findViewById<TextView>(R.id.name)
+            icon = view.findViewById<FloatingActionButton>(R.id.icon)
 
             with(user) {
                 email?.text = user?.email

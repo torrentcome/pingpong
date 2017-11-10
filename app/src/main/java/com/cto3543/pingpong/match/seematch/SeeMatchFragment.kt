@@ -28,7 +28,7 @@ class SeeMatchFragment : Fragment() {
         if (view != null) {
             val layoutManager = GridLayoutManager(activity as Context?, 1)
             view.recycler_view.layoutManager = layoutManager
-            adapter = MatchListAdapter(activity, ArrayList(), object : MatchListAdapter.MatchSelectionAdapter {
+            adapter = MatchListAdapter(activity as Context?, ArrayList(), object : MatchListAdapter.MatchSelectionAdapter {
                 override fun onClick(match: Match?) {
 
                 }

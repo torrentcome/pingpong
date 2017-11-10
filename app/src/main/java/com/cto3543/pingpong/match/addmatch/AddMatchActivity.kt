@@ -31,7 +31,7 @@ class AddMatchActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_match)
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -41,14 +41,14 @@ class AddMatchActivity : BaseActivity() {
         mUser1 = bundle.getParcelable("mUser1")
         mUser2 = bundle.getParcelable("mUser2")
 
-        (findViewById(R.id.name_1) as TextView).text = mUser1?.email
-        (findViewById(R.id.name2) as TextView).text = mUser2?.email
+        (findViewById<TextView>(R.id.name_1)).text = mUser1?.email
+        (findViewById<TextView>(R.id.name2)).text = mUser2?.email
 
-        mEditText1 = findViewById(R.id.edit1) as EditText
-        mEditText2 = findViewById(R.id.edit2) as EditText
+        mEditText1 = findViewById<EditText>(R.id.edit1)
+        mEditText2 = findViewById<EditText>(R.id.edit2)
 
-        val fab = findViewById(R.id.fab) as FloatingActionButton
-        fab.setOnClickListener { view ->
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener { _ ->
             attemptAddMatch()
         }
     }
